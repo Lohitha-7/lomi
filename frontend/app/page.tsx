@@ -34,6 +34,9 @@ type ResumeResult = {
   error?: string;
 };
 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+
 type Skill = {
   id: string;
   name: string;
@@ -395,7 +398,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/chat",
+        `${API_URL}/chat`,
         {
           method: "POST",
           headers: {
@@ -530,7 +533,7 @@ export default function Home() {
       formData.append("file", resumeFile);
 
       const response = await fetch(
-        "http://127.0.0.1:8000/resume/scan",
+        `${API_URL}/resume/scan`,
         {
           method: "POST",
           body: formData,
